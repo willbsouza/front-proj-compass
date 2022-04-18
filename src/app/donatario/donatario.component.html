@@ -1,0 +1,82 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Cadastro de Donatário</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container mt-4">
+		<div class="row">
+			<div style="background-color: #E9ECEF" class="col-md-8 col-sm-8 container justify-content-center card">
+				<h1 style="text-align: center">Cadastrar Novo Donatário</h1>
+				<div class="card-body">
+					<form class="row g-3" #f="ngForm">
+						<div class="col-md-6">
+							<label class="form-label">Nome</label>
+							<input type="text" name="nomeDonatario" [(ngModel)]="donatario.nomeDonatario" id="nomeDonatario" required #nome="ngModel" class="form-control"
+								placeholder="Insira o seu nome"><div *ngIf="!nome.valid && nome.touched" class="alert alert-danger">Nome é obrigatório</div>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label">Telefone</label>
+							<input type="text" name="telefone" [(ngModel)]="donatario.telefone" id="telefone" required #telefone="ngModel" class="form-control"
+								placeholder="Insira o seu telefone"><div *ngIf="!telefone.valid && telefone.touched" class="alert alert-danger">Telefone é obrigatório</div>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label">CPF</label>
+							<input type="text" name="cpfDonatario" [(ngModel)]="donatario.cpfDonatario" id="cpfDonatario" required #cpf="ngModel" class="form-control"
+								placeholder="Insira o seu CPF"><div *ngIf="!cpf.valid && cpf.touched" class="alert alert-danger">CPF é obrigatório</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<label class="form-label">Senha</label>
+							<input type="password" name="senha" [(ngModel)]="donatario.senha" id="senha" required #senha="ngModel" class="form-control"
+								placeholder="Insira sua senha"><div *ngIf="!senha.valid && senha.touched" class="alert alert-danger">Senha é obrigatório</div>
+						</div>
+						<hr style="width: 820px">
+							<div class="col-6">
+								<label for="logradouro" class="form-label">Logradouro</label>
+								<input type="text" name="logradouro" [(ngModel)]="donatario.logradouro" id="logradouro" required #logradouro="ngModel" class="form-control"
+                 placeholder="Av. Brasil"><div *ngIf="!logradouro.valid && logradouro.touched" class="alert alert-danger">Logradouro é obrigatório</div>
+							</div>
+							<div class="col-2">
+								<label for="numero" class="form-label">Número</label>
+								<input type="text" name="numero" [(ngModel)]="donatario.numero" id="numero" required #numero="ngModel" class="form-control"
+                 placeholder="123"><div *ngIf="!numero.valid && numero.touched" class="alert alert-danger">Número é obrigatório</div>
+							</div>
+							<div class="col-4">
+								<label for="complemento"  class="form-label">Complemento</label>
+								<input type="text" [(ngModel)]="donatario.complemento" name="complemento" id="complemento" class="form-control" placeholder="Casa 01">
+							</div>
+							<div class="col-4">
+								<label for="bairro" class="form-label">Bairro</label>
+								<input type="text" [(ngModel)]="donatario.bairro" name="bairro" id="bairro" required #bairro="ngModel" class="form-control"
+                 placeholder="Janga"><div *ngIf="!bairro.valid && bairro.touched" class="alert alert-danger">Bairro é obrigatório</div>
+							</div>
+							<div class="col-4">
+								<label for="cidade" class="form-label">Cidade</label>
+								<input type="text" [(ngModel)]="donatario.cidade" name="cidade" id="cidade" required #cidade="ngModel" class="form-control"
+                 placeholder="Recife"><div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger">Cidade é obrigatório</div>
+							</div>
+							<div class="col-2">
+								<label for="estado" class="form-label">Estado</label>
+								<input type="text" [(ngModel)]="donatario.estado" name="estado" id="estado" required #estado="ngModel" class="form-control"
+                 placeholder="PE"><div *ngIf="!estado.valid && estado.touched" class="alert alert-danger">Estado é obrigatório</div>
+							</div>
+							<div class="col-2">
+								<label for="cep" class="form-label">CEP</label>
+								<input type="text" [(ngModel)]="donatario.cep" name="cep" id="cep" required #cep="ngModel" class="form-control"
+                 placeholder="53437000"><div *ngIf="!cep.valid && cep.touched" class="alert alert-danger">Cep é obrigatório</div>
+							</div>
+						<div class="col-12">
+							<button type="submit" [disabled]="!f.valid" (click)="cadastrarDonatario()" class="btn btn-dark">Confirmar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

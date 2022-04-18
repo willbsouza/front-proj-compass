@@ -1,0 +1,152 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Realizar uma doação</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+<button class="btn btn-primary mt-4" type="submit" (click)="obterDoadores()">Listar Doadores Cadastrados</button>
+<button class="btn btn-primary ml-4 mt-4" type="submit" (click)="obterDonatarios()">Listar Donatários Cadastrados</button>
+<button class="btn btn-primary ml-4 mt-4" type="submit" (click)="obterDoacoes()">Listar Doações Realizadas</button>
+<button class="btn btn-primary ml-4 mt-4" type="submit" (click)="obterSolicitacoes()">Listar Solicitações Realizadas</button>
+<button class="btn btn-primary ml-4 mt-4" type="submit" (click)="obterItens()">Estoque</button>
+
+<table *ngIf="exibirListaDoador" class="table table-condensed table-hover mt-4">
+  <thead >
+      <th>Id</th>
+      <th>Nome do Doador</th>
+      <th>CPF do Doador</th>
+      <th>Ações</th>
+  </thead>
+  <tbody>
+      <tr *ngFor="let doador of doadorList">
+          <td>{{doador.id}}</td>
+          <td>{{doador.nome}}</td>
+          <td>{{doador.cpf}}</td>
+          <td>
+            <button class="btn btn-warning"  data-toggle="modal" data-target="#modalAlteracao">
+              <i class="fa fa-edit">Atualizar</i>
+            </button>
+            <button class="btn btn-danger ml-4" data-toggle="modal" data-target="#modalDelecao" (click)="deletarDoador(doador.id)">
+              <i class="fa fa-trash">Deletar</i>
+            </button>
+          </td>
+      </tr>
+  </tbody>
+</table>
+
+<table *ngIf="exibirListaDonatario" class="table table-condensed table-hover mt-4">
+  <thead >
+      <th>Id</th>
+      <th>Nome do Donatário</th>
+      <th>CPF do Donatário</th>
+      <th>Ações</th>
+      <th></th>
+  </thead>
+  <tbody>
+      <tr *ngFor="let donatario of donatarioList">
+          <td>{{donatario.id}}</td>
+          <td>{{donatario.nome}}</td>
+          <td>{{donatario.cpf}}</td>
+          <td>
+            <button class="btn btn-warning"  data-toggle="modal" data-target="#modalAlteracao">
+              <i class="fa fa-edit">Atualizar</i>
+            </button>
+            <button class="btn btn-danger ml-4" data-toggle="modal" data-target="#modalDelecao" (click)="deletarDonatario(donatario.id)">
+              <i class="fa fa-trash">Deletar</i>
+            </button>
+          </td>
+      </tr>
+  </tbody>
+</table>
+
+<table *ngIf="exibirListaDoacao" class="table table-condensed table-hover mt-4">
+  <thead >
+      <th>Id</th>
+      <th>Nome do Doador</th>
+      <th>Filial Ong</th>
+      <th>Item</th>
+      <th>Quantidade</th>
+      <th>Modalidade</th>
+      <th>Data da Doação</th>
+      <th>Ações</th>
+  </thead>
+  <tbody>
+      <tr *ngFor="let doacao of doacaoList">
+          <td>{{doacao.id}}</td>
+          <td>{{doacao.nomeDoador}}</td>
+          <td>{{doacao.filialOng}}</td>
+          <td>{{doacao.item}}</td>
+          <td>{{doacao.quantidadeItem}}</td>
+          <td>{{doacao.modalidade}}</td>
+          <td>{{doacao.dataCadastro}}</td>
+          <td>
+            <button class="btn btn-warning"  data-toggle="modal" data-target="#modalAlteracao">
+              <i class="fa fa-edit">Atualizar</i>
+            </button>
+            <button class="btn btn-danger ml-4" data-toggle="modal" data-target="#modalDelecao" (click)="deletarDoacao(doacao.id)">
+              <i class="fa fa-trash">Deletar</i>
+            </button>
+          </td>
+      </tr>
+  </tbody>
+</table>
+
+<table *ngIf="exibirListaSolicitacao" class="table table-condensed table-hover mt-4">
+  <thead >
+    <th>Id</th>
+    <th>Nome do Doador</th>
+    <th>Filial Ong</th>
+    <th>Item</th>
+    <th>Quantidade</th>
+    <th>Data da Doação</th>
+    <th>Ações</th>
+  </thead>
+  <tbody>
+      <tr *ngFor="let solicitacao of solicitacaoList">
+        <td>{{solicitacao.id}}</td>
+        <td>{{solicitacao.nomeDonatario}}</td>
+        <td>{{solicitacao.filialOng}}</td>
+        <td>{{solicitacao.item}}</td>
+        <td>{{solicitacao.quantidadeItem}}</td>
+        <td>{{solicitacao.dataCadastro}}</td>
+        <td>
+          <button class="btn btn-warning"  data-toggle="modal" data-target="#modalAlteracao">
+            <i class="fa fa-edit">Atualizar</i>
+          </button>
+          <button class="btn btn-danger ml-4" data-toggle="modal" data-target="#modalDelecao" (click)="deletarSolicitacao(solicitacao.id)">
+            <i class="fa fa-trash">Deletar</i>
+          </button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+<table *ngIf="exibirEstoque" class="table table-condensed table-hover mt-4">
+  <thead >
+    <th>Id</th>
+    <th>Tipo</th>
+    <th>Quantidade Total</th>
+    <th>Ações</th>
+  </thead>
+  <tbody>
+      <tr *ngFor="let item of itemList">
+        <td>{{item.id}}</td>
+        <td>{{item.tipo}}</td>
+        <td>{{item.quantidadeTotal}}</td>
+        <td>
+          <button class="btn btn-warning"  data-toggle="modal" data-target="#modalAlteracao">
+            <i class="fa fa-edit">Atualizar</i>
+          </button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<button *ngIf="exibirListaDoador || exibirListaDonatario || exibirListaDoacao || exibirListaSolicitacao || exibirEstoque " class="btn btn-info mt-4" (click)="limparTela()">
+  <i class="fa fa-edit"></i>Limpar Tela
+</button>
+</body>
+</html>
